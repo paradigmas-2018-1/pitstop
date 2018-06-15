@@ -21,9 +21,6 @@ public class CarAgent extends Agent {
 		runBehaviour = new RunBehaviour(this);
 		
 		insertIntoYellowPages();
-	
-		System.out.println(this.getName());
-		System.out.println(this.getLocalName());
 		
 		addBehaviour(runBehaviour);
 	}

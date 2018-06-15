@@ -5,6 +5,7 @@ import Utils.Utils;
 import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 public class ListenForPilotMessageBehaviour extends CyclicBehaviour{
 
@@ -17,13 +18,6 @@ public class ListenForPilotMessageBehaviour extends CyclicBehaviour{
 	
 	@Override
 	public void action() {
-//		try {
-//			Thread.sleep(700);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		System.out.println("Escutando mensagens Lollipop -> Piloto");
 		String message = getMessages();
 		
 		if(message != null) {
@@ -33,20 +27,15 @@ public class ListenForPilotMessageBehaviour extends CyclicBehaviour{
 			if(isComming) {
 				System.out.println("Mensagem recebida: O piloto vem.");
 				turnLollipopToStop();
-			} 
-			
-			boolean isStopped = checkIfPilotStopped(message);
-			
-			if(isStopped) {
-				System.out.println("Mensagem recebida: O piloto parou");
-				sendMessageToAllCrew();
-				stopListeningToPilot();
+			} else {
+				boolean isStopped = checkIfPilotStopped(message);
+				
+				if(isStopped) {
+					System.out.println("Mensagem recebida: O piloto parou");
+					sendMessageToAllCrew();
+				}
 			}
 		}
-	}
-	
-	private void stopListeningToPilot() {
-		this.lollipopAgent.removeListenForPilotCallBehaviour();
 	}
 	
 	private void turnLollipopToStop() {
@@ -76,7 +65,8 @@ public class ListenForPilotMessageBehaviour extends CyclicBehaviour{
 	}
 	
 	private String getMessages() {
-		ACLMessage aclMessage = this.lollipopAgent.blockingReceive();
+		MessageTemplate messageTemplate = MessageTemplate.MatchConversationId(Constants.CAR_TO_LOLLIPOP);
+		ACLMessage aclMessage = this.lollipopAgent.receive(messageTemplate);
 		
 		String message = null;
 		
@@ -96,9 +86,12 @@ public class ListenForPilotMessageBehaviour extends CyclicBehaviour{
 		
 		if(tyreChangerAID != null) {
 			System.out.println("Enviando mensagem ao Tyre Changer.");
-			ACLMessage aclMessage = new ACLMessage(ACLMessage.PROPOSE);
+			
+			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			aclMessage.setConversationId(Constants.LOLLIPOP_TO_TYRE_CHANGER);
 			aclMessage.addReceiver(tyreChangerAID);
 			aclMessage.setContent(Constants.CHANGE_TYRE_MESSAGE);
+			
 			this.lollipopAgent.send(aclMessage);
 		}
 		

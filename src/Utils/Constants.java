@@ -20,4 +20,11 @@ public final class Constants {
 	public final static String TYRE_SCREWED_MESSAGE = "PARAFUZEI!";
 	public final static String TYRE_CHANGED_MESSAGE = "TROQUEI VAI VAI VAI";
 	public final static String CAR_STOP_MESSAGE = "PAREI JESUS CRISTO";
+	
+	public final static String CAR_TO_LOLLIPOP = "car-to-lollipop";
+	public final static String LOLLIPOP_TO_TYRE_CHANGER = "lollipop_to_tyre_changer";
+	public final static String LOLLIPOP_TO_CAR = "lollipop_to_car";
+	public final static String TYRE_CHANGER_TO_LOLLIPOP = "tyre_changer_to_lollipop";
+	public final static String TYRE_CHANGER_TO_TYRE_CARRIER = "tyre_changer_to_tyre_carrier";
+	public final static String TYRE_CARRIER_TO_TYRE_CHANGER = "tyre_carrier_to_tyre_changer";
 }

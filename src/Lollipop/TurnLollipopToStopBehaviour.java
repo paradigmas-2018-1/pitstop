@@ -22,7 +22,7 @@ public class TurnLollipopToStopBehaviour extends OneShotBehaviour{
 	}
 	
 	private void turnLollipop() {
-		System.out.println(Constants.PILOT_COMMING_MESSAGE);
+		System.out.println(Constants.TURNING_LOLLIPOP_TO_STOP_MESSAGE);
 	}
 	
 	private void sendStopMessageToPilot() {
@@ -31,7 +31,9 @@ public class TurnLollipopToStopBehaviour extends OneShotBehaviour{
 		
 		if(pilotAID != null) {
 			System.out.println("Enviando mensagem pro piloto: Para por favor.");
+			
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			aclMessage.setConversationId(Constants.LOLLIPOP_TO_CAR);
 			aclMessage.setContent(Constants.TURNING_LOLLIPOP_TO_STOP_MESSAGE);
 			aclMessage.addReceiver(pilotAID);
 			this.lollipopAgent.send(aclMessage);

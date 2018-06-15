@@ -30,7 +30,10 @@ public class PutTyreBehaviour extends OneShotBehaviour{
 		AID tyreChangerAID = Utils.getTyreChangerAID(this.tyreCarrierAgent);
 		
 		if(tyreChangerAID != null) {
+			System.out.println("Enviando mensagem para TyreChanger.");
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			
+			aclMessage.setConversationId(Constants.TYRE_PUT_BACK_MESSAGE);
 			aclMessage.addReceiver(tyreChangerAID);
 			aclMessage.setContent(Constants.TYRE_PUT_BACK_MESSAGE);
 			this.tyreCarrierAgent.send(aclMessage);

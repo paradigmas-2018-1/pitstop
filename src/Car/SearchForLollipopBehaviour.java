@@ -5,6 +5,7 @@ import Utils.Utils;
 import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 public class SearchForLollipopBehaviour extends CyclicBehaviour {
 
@@ -26,12 +27,12 @@ public class SearchForLollipopBehaviour extends CyclicBehaviour {
 				System.out.println("Mensagem recebida: Tenho que parar.");
 				sendStopMessageToLollipop();
 				stop();
-			} 
-			
-			boolean isRun = checkIfMessageIsRun(message);
-			if(isRun) {
-				System.out.println("mensagem recebida: correr!");
-				run();
+			} else {
+				boolean isRun = checkIfMessageIsRun(message);
+				if(isRun) {
+					System.out.println("mensagem recebida: correr!");
+					run();
+				}
 			}
 		}
 	}
@@ -53,7 +54,9 @@ public class SearchForLollipopBehaviour extends CyclicBehaviour {
 	}
 
 	private String getLollipopMessage() {
-		ACLMessage aclMessage = this.carAgent.receive();
+		MessageTemplate messageTemplate = 
+				MessageTemplate.MatchConversationId(Constants.LOLLIPOP_TO_CAR);
+		ACLMessage aclMessage = this.carAgent.receive(messageTemplate);
 
 		String message = null;
 		if(aclMessage != null) {
@@ -68,6 +71,9 @@ public class SearchForLollipopBehaviour extends CyclicBehaviour {
 
 		if(lollipopAID != null) {
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			
+			
+			aclMessage.setConversationId(Constants.CAR_TO_LOLLIPOP);
 			aclMessage.addReceiver(lollipopAID);
 			aclMessage.setContent(Constants.CAR_STOP_MESSAGE);
 			this.carAgent.send(aclMessage);

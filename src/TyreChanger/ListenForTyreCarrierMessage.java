@@ -3,6 +3,7 @@ package TyreChanger;
 import Utils.Constants;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 public class ListenForTyreCarrierMessage extends CyclicBehaviour {
 
@@ -18,18 +19,14 @@ public class ListenForTyreCarrierMessage extends CyclicBehaviour {
 		String message = getTyreCarrierMessage();
 		
 		if(message != null) {
+			System.out.println("Mensagem pra TyreCarrier: Hora de parafusar!");
 			boolean isTyrePutBack = checkIfMessageIsTyrePutBack(message);
 			
 			if(isTyrePutBack) {
 				screwTyre();
-				stopListeningForTyreCarrierBehaviour();
 			}
 		}
 		
-	}
-	
-	private void stopListeningForTyreCarrierBehaviour() {
-		this.tyreChangerAgent.removeListenForTyreCarrierMessageBehaviour();
 	}
 	
 	private void screwTyre() {
@@ -47,7 +44,8 @@ public class ListenForTyreCarrierMessage extends CyclicBehaviour {
 	}
 	
 	private String getTyreCarrierMessage() {
-		ACLMessage aclMessage = this.tyreChangerAgent.receive();
+		MessageTemplate messageTemplate = MessageTemplate.MatchContent(Constants.TYRE_PUT_BACK_MESSAGE);
+		ACLMessage aclMessage = this.tyreChangerAgent.receive(messageTemplate);
 		
 		String message = null;
 		

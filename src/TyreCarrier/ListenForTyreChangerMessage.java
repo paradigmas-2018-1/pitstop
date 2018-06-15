@@ -3,6 +3,8 @@ package TyreCarrier;
 import Utils.Constants;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
+import jade.tools.sniffer.Message;
 
 public class ListenForTyreChangerMessage extends CyclicBehaviour{
 
@@ -21,16 +23,11 @@ public class ListenForTyreChangerMessage extends CyclicBehaviour{
 			boolean isUnscrewed = checkIfMessageWasTyreUnscrewed(message);
 			
 			if(isUnscrewed) {
-				removeTyre();
-				stopListeningToTyreChanger();			
+				removeTyre();			
 			}	
 		}
 	}
-	
-	private void stopListeningToTyreChanger() {
-		this.tyreCarrierAgent.removeListenForTyreChangerMessageBehaviour();
-	}
-	
+		
 	private void removeTyre() {
 		RemoveTyreBehaviour removeTyreBehaviour = new RemoveTyreBehaviour(this.tyreCarrierAgent);
 		this.tyreCarrierAgent.setRemoveTyreBehaviour(removeTyreBehaviour);
@@ -46,7 +43,9 @@ public class ListenForTyreChangerMessage extends CyclicBehaviour{
 	}
 	
 	private String getTyreChangerMessage() {
-		ACLMessage aclMessage = this.tyreCarrierAgent.blockingReceive();
+		MessageTemplate messageTemplate = 
+				MessageTemplate.MatchConversationId(Constants.TYRE_CHANGER_TO_TYRE_CARRIER);
+		ACLMessage aclMessage = this.tyreCarrierAgent.receive(messageTemplate);
 		
 		String message = null;
 		

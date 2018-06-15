@@ -12,8 +12,6 @@ public final class Utils {
 	public static AID searchForAgent(Agent agent, String name,
 			String type) throws FIPAException {
 		
-
-		
 		DFAgentDescription dfAgentDescription = new DFAgentDescription();
 		ServiceDescription serviceDescription = new ServiceDescription();
 
@@ -40,6 +38,7 @@ public final class Utils {
 		dfAgentDescription.setName(aid);
 
 		ServiceDescription serviceDescription = new ServiceDescription();
+		
 		serviceDescription.setName(name);
 		serviceDescription.setType(type);
 
@@ -99,5 +98,19 @@ public final class Utils {
 		}
 		
 		return lollipopAID;
+	}
+	
+	public static AID getTyreCarrierAID(Agent agent) {
+		AID tyreCarrierAID = null;
+		try {
+			tyreCarrierAID = 
+					Utils.searchForAgent(agent, Constants.TYRE_CARRIER_AGENT_NAME, 
+							Constants.TYRE_CARRIER_AGENT_TYPE);
+		} catch (FIPAException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return tyreCarrierAID;
 	}
 }

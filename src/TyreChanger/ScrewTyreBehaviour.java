@@ -20,6 +20,7 @@ public class ScrewTyreBehaviour extends OneShotBehaviour{
 	
 	@Override
 	public void action() {
+		System.out.println("ASDADAS");
 		screwTyre();
 		sendTyreScrewedMessageToLollipop();
 	}
@@ -27,7 +28,6 @@ public class ScrewTyreBehaviour extends OneShotBehaviour{
 	private void screwTyre() {
 		System.out.println(Constants.TYRE_SCREWED_MESSAGE);
 		updateTyres();
-		
 	}
 	
 	private void updateTyres() {
@@ -38,11 +38,16 @@ public class ScrewTyreBehaviour extends OneShotBehaviour{
 		AID lollipopAID = Utils.getLollipopAID(this.tyreChangerAgent);
 		
 		if(lollipopAID != null) {
-			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			System.out.println("Enviando mensagem SCREWED para Lollipop");
 			
+			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			aclMessage.setConversationId(Constants.TYRE_CHANGER_TO_LOLLIPOP);
 			aclMessage.addReceiver(lollipopAID);
 			aclMessage.setContent(Constants.TYRE_SCREWED_MESSAGE);
 			this.tyreChangerAgent.send(aclMessage);
+		}
+		else {
+			System.out.println("NULL");
 		}
 	}
 

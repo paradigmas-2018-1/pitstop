@@ -2,7 +2,6 @@ package TyreChanger;
 
 import jade.core.AID;
 import jade.core.behaviours.OneShotBehaviour;
-import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 import Utils.*;
 
@@ -26,28 +25,18 @@ public class UnscrewTyreBehaviour extends OneShotBehaviour{
 	}
 	
 	private void tyreUnscrewedMessage() {
-		ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
-		AID tyreCarrierAID = getTyreCarrierAID();
+		AID tyreCarrierAID = Utils.getTyreCarrierAID(this.tyreChangerAgent);
 		
 		if(tyreCarrierAID != null) {
+			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			
+			aclMessage.setConversationId(Constants.TYRE_CHANGER_TO_TYRE_CARRIER);
 			aclMessage.addReceiver(tyreCarrierAID);
 			aclMessage.setContent(Constants.TYRE_UNSCREWED_MESSAGE);
 			this.tyreChangerAgent.send(aclMessage);
 		}
 	}
 	
-	private AID getTyreCarrierAID() {
-		AID tyreCarrierAID = null;
-		try {
-			tyreCarrierAID = 
-					Utils.searchForAgent(this.tyreChangerAgent, Constants.TYRE_CARRIER_AGENT_NAME, 
-							Constants.TYRE_CARRIER_AGENT_TYPE);
-		} catch (FIPAException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return tyreCarrierAID;
-	}
+	
 
 }

@@ -33,6 +33,7 @@ public class TurnLollipopToRunBehaviour extends OneShotBehaviour{
 		if(pilotAID!= null) {
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
 			
+			aclMessage.setConversationId(Constants.LOLLIPOP_TO_CAR);
 			aclMessage.addReceiver(pilotAID);
 			aclMessage.setContent(Constants.TURNING_LOLLIPOP_TO_RUN_MESSAGE);
 			lollipopAgent.send(aclMessage);

@@ -5,7 +5,7 @@ import jade.core.behaviours.CyclicBehaviour;
 public class RunBehaviour extends CyclicBehaviour {
 	
 	private static final long serialVersionUID = 1L;
-	CarAgent carAgent;
+	private CarAgent carAgent;
 	private final int TYRE_QUALITY_LIMIT = 50;
 	
 	public RunBehaviour(CarAgent carAgent) {

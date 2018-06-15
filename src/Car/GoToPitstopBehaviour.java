@@ -4,7 +4,6 @@ import Utils.Constants;
 import Utils.Utils;
 import jade.core.AID;
 import jade.core.behaviours.OneShotBehaviour;
-import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 
 
@@ -19,7 +18,6 @@ public class GoToPitstopBehaviour extends OneShotBehaviour{
 	
 	@Override
 	public void action() {
-		// TODO Send message to everyone to prepare!
 		sendMessageToInformPitstop();
 		
 	}
@@ -42,6 +40,7 @@ public class GoToPitstopBehaviour extends OneShotBehaviour{
 			System.out.println("Enviando mensagem INDO AO PITSTOP " + lollipopAgentAID);
 			
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			aclMessage.setConversationId(Constants.CAR_TO_LOLLIPOP);
 			
 			aclMessage.addReceiver(lollipopAgentAID);
 			aclMessage.setContent(Constants.GOING_TO_PITSTOP_MESSAGE);

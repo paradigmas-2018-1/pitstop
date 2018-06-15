@@ -3,6 +3,7 @@ package TyreChanger;
 import Utils.Constants;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 public class ListenForLollipopMessageBehaviour extends CyclicBehaviour {
 	
@@ -15,13 +16,6 @@ public class ListenForLollipopMessageBehaviour extends CyclicBehaviour {
 	
 	@Override
 	public void action() {
-//		try {
-//			Thread.sleep(800);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		System.out.println("Escutando mensagens Lollipop TyreChanger");
 		String message = getLollipopMessage();
 		
 		if(message != null) {
@@ -29,13 +23,8 @@ public class ListenForLollipopMessageBehaviour extends CyclicBehaviour {
 			
 			if(isChangeTyreMessage) {
 				startChangingTyres();
-				stopListeningForLollipopMessage();
 			}	
 		}
-	}
-	
-	private void stopListeningForLollipopMessage() {
-		this.tyreChangerAgent.removeListenForLollipopMessageBehaviour();
 	}
 	
 	private void startChangingTyres() {
@@ -53,7 +42,8 @@ public class ListenForLollipopMessageBehaviour extends CyclicBehaviour {
 	}
 
 	private String getLollipopMessage() {
-		ACLMessage aclMessage = this.tyreChangerAgent.blockingReceive();
+		MessageTemplate messageTemplate = MessageTemplate.MatchConversationId(Constants.LOLLIPOP_TO_TYRE_CHANGER);
+		ACLMessage aclMessage = this.tyreChangerAgent.receive(messageTemplate);
 		
 		String message = null;
 		
