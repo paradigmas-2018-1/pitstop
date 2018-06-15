@@ -21,17 +21,14 @@ public class ListenForPilotMessageBehaviour extends CyclicBehaviour{
 		String message = getMessages();
 		
 		if(message != null) {
-			System.out.println("Mensagem para o Lollipop!");
 			boolean isComming = checkIfPilotIsComming(message);
 			
 			if(isComming) {
-				System.out.println("Mensagem recebida: O piloto vem.");
 				turnLollipopToStop();
 			} else {
 				boolean isStopped = checkIfPilotStopped(message);
 				
 				if(isStopped) {
-					System.out.println("Mensagem recebida: O piloto parou");
 					sendMessageToAllCrew();
 				}
 			}
@@ -85,7 +82,6 @@ public class ListenForPilotMessageBehaviour extends CyclicBehaviour{
 		AID tyreChangerAID = Utils.getTyreChangerAID(this.lollipopAgent);
 		
 		if(tyreChangerAID != null) {
-			System.out.println("Enviando mensagem ao Tyre Changer.");
 			
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
 			aclMessage.setConversationId(Constants.LOLLIPOP_TO_TYRE_CHANGER);

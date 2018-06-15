@@ -4,7 +4,6 @@ import Utils.Constants;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import jade.tools.sniffer.Message;
 
 public class ListenForTyreChangerMessage extends CyclicBehaviour{
 

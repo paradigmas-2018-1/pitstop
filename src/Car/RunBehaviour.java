@@ -38,7 +38,6 @@ public class RunBehaviour extends CyclicBehaviour {
 	}
 	
 	private void goToPitstop() {
-		System.out.println("goToPitstop");
 		GoToPitstopBehaviour goToPitstopBehaviour = new GoToPitstopBehaviour(this.carAgent);
 		this.carAgent.setGoToPitstopBehaviour(goToPitstopBehaviour);
 		this.carAgent.addGoToPitstopBehaviour();

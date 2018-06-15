@@ -37,8 +37,6 @@ public class GoToPitstopBehaviour extends OneShotBehaviour{
 		AID lollipopAgentAID = Utils.getLollipopAID(this.carAgent);
 		
 		if(lollipopAgentAID != null) {
-			System.out.println("Enviando mensagem INDO AO PITSTOP " + lollipopAgentAID);
-			
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
 			aclMessage.setConversationId(Constants.CAR_TO_LOLLIPOP);
 			

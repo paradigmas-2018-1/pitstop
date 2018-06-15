@@ -4,7 +4,6 @@ import Utils.Constants;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import jade.tools.sniffer.Message;
 
 public class ListenForTyreChangerMessageBehaviour extends CyclicBehaviour{
 
@@ -20,7 +19,6 @@ public class ListenForTyreChangerMessageBehaviour extends CyclicBehaviour{
 		String message = getTyreChangerMessage();
 		
 		if(message != null) {
-			System.out.println("Mensagem para TyreChanger recebida" + message);
 			boolean isMessageTyreChanged = checkIfMessageIsTyreChanged(message);
 			
 			if(isMessageTyreChanged) {

@@ -19,7 +19,6 @@ public class ListenForTyreCarrierMessage extends CyclicBehaviour {
 		String message = getTyreCarrierMessage();
 		
 		if(message != null) {
-			System.out.println("Mensagem pra TyreCarrier: Hora de parafusar!");
 			boolean isTyrePutBack = checkIfMessageIsTyrePutBack(message);
 			
 			if(isTyrePutBack) {

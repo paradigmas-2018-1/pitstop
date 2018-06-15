@@ -24,13 +24,11 @@ public class SearchForLollipopBehaviour extends CyclicBehaviour {
 			boolean isStop = checkIfMessageIsStop(message);
 
 			if(isStop) {
-				System.out.println("Mensagem recebida: Tenho que parar.");
 				sendStopMessageToLollipop();
 				stop();
 			} else {
 				boolean isRun = checkIfMessageIsRun(message);
 				if(isRun) {
-					System.out.println("mensagem recebida: correr!");
 					run();
 				}
 			}
@@ -77,7 +75,6 @@ public class SearchForLollipopBehaviour extends CyclicBehaviour {
 			aclMessage.addReceiver(lollipopAID);
 			aclMessage.setContent(Constants.CAR_STOP_MESSAGE);
 			this.carAgent.send(aclMessage);
-			System.out.println("Enviando mensagem STOP para Lollipop");
 		}
 	}
 
