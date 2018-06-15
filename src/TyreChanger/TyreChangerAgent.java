@@ -6,7 +6,9 @@ import Utils.*;
 
 public class TyreChangerAgent extends Agent{
 
+	private static final long serialVersionUID = 1L;
 	private ListenForLollipopMessageBehaviour listenForLollipopMessageBehaviour;
+	private ScrewTyreBehaviour screwTyreBehaviour;
 	
 	protected void setup() {
 		insertAgentIntoYellowPages();
@@ -32,5 +34,10 @@ public class TyreChangerAgent extends Agent{
 
 	public void addChangeTyreBehaviour(UnscrewTyreBehaviour changeTyreBehaviour) {
 		addBehaviour(changeTyreBehaviour);
+	}
+
+	public void setScrewTyreBehaviour(ScrewTyreBehaviour screwTyreBehaviour) {
+		this.screwTyreBehaviour = screwTyreBehaviour;
+		
 	}
 }

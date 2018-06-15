@@ -8,6 +8,7 @@ import jade.lang.acl.ACLMessage;
 
 public class ScrewTyreBehaviour extends OneShotBehaviour{
 
+	private static final long serialVersionUID = 1L;
 	private TyreChangerAgent tyreChangerAgent;
 	
 	public ScrewTyreBehaviour(TyreChangerAgent tyreChangerAgent) {
@@ -25,7 +26,7 @@ public class ScrewTyreBehaviour extends OneShotBehaviour{
 	}
 	
 	private void sendTyreScrewedMessageToLollipop() {
-		AID lollipopAID = Utils.getLollipopAID();
+		AID lollipopAID = Utils.getLollipopAID(this.tyreChangerAgent);
 		
 		if(lollipopAID != null) {
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);

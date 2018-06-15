@@ -1,11 +1,14 @@
 package Car;
 
 import Utils.Constants;
+import Utils.Utils;
+import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 
 public class SearchForLollipopBehaviour extends CyclicBehaviour {
 
+	private static final long serialVersionUID = 1L;
 	private CarAgent carAgent;
 	
 	public SearchForLollipopBehaviour(CarAgent carAgent) {
@@ -21,6 +24,7 @@ public class SearchForLollipopBehaviour extends CyclicBehaviour {
 			
 			if(isStop) {
 				stop();
+				sendStopMessageToLollipop();
 			} else {
 				boolean isRun = checkIfMessageIsRun(message);
 				if(isRun) {
@@ -56,6 +60,17 @@ public class SearchForLollipopBehaviour extends CyclicBehaviour {
 		}
 		
 		return message;
+	}
+	
+	private void sendStopMessageToLollipop() {
+		AID lollipopAID = Utils.getLollipopAID(this.carAgent);
+		
+		if(lollipopAID != null) {
+			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			aclMessage.addReceiver(lollipopAID);
+			aclMessage.setContent(Constants.CAR_STOP_MESSAGE);
+			this.carAgent.send(aclMessage);
+		}
 	}
 	
 	private void stop() {

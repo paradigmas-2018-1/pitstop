@@ -6,6 +6,7 @@ import jade.lang.acl.ACLMessage;
 
 public class ListenForTyreChangerMessageBehaviour extends CyclicBehaviour{
 
+	private static final long serialVersionUID = 1L;
 	private LollipopAgent lollipopAgent;
 	
 	public ListenForTyreChangerMessageBehaviour(LollipopAgent lollipopAgent) {
@@ -20,18 +21,30 @@ public class ListenForTyreChangerMessageBehaviour extends CyclicBehaviour{
 			boolean isMessageTyreChanged = checkIfMessageIsTyreChanged(message);
 			
 			if(isMessageTyreChanged) {
-				// TODO Send message to pilot start running;
+				turnLollipopToRun();
+				stopListeningForTyreChangerMessage();
 			}
 		}
 		
 	}
 	
+	private void turnLollipopToRun() {
+		TurnLollipopToRunBehaviour turnLollipopToRunBehaviour = 
+				new TurnLollipopToRunBehaviour(this.lollipopAgent);
+		this.lollipopAgent.setTurnLollipopToRunBehaviour(turnLollipopToRunBehaviour);
+		this.lollipopAgent.addTurnLollipopToRunBehaviour();
+	}
+	
 	private boolean checkIfMessageIsTyreChanged(String message) {
-		if(message.equals(Constants.TYRE_CHANGED_MESSAGE) {
+		if(message.equals(Constants.TYRE_CHANGED_MESSAGE)){
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	private void stopListeningForTyreChangerMessage() {
+		this.lollipopAgent.removeListenForTyreChangerMessageBehaviour();
 	}
 	
 	private String getTyreChangerMessage() {

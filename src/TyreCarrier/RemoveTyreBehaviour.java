@@ -1,14 +1,11 @@
 package TyreCarrier;
 
 import Utils.Constants;
-import Utils.Utils;
-import jade.core.AID;
 import jade.core.behaviours.OneShotBehaviour;
-import jade.domain.FIPAException;
-import jade.lang.acl.ACLMessage;
 
 public class RemoveTyreBehaviour extends OneShotBehaviour{
 
+	private static final long serialVersionUID = 1L;
 	private TyreCarrierAgent tyreCarrierAgent;
 	
 	public RemoveTyreBehaviour(TyreCarrierAgent tyreCarrierAgent) {

@@ -19,4 +19,5 @@ public final class Constants {
 	public final static String TYRE_PUT_BACK_MESSAGE = "COLOQUEI!";
 	public final static String TYRE_SCREWED_MESSAGE = "PARAFUZEI!";
 	public final static String TYRE_CHANGED_MESSAGE = "TROQUEI VAI VAI VAI";
+	public final static String CAR_STOP_MESSAGE = "PAREI JESUS CRISTO";
 }

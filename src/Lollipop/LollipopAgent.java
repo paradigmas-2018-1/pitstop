@@ -7,15 +7,19 @@ import jade.domain.FIPAException;
 
 public class LollipopAgent extends Agent {
 	private static final long serialVersionUID = 1L;
-	private ListenForPilotCallBehaviour listenForPilotCallBehaviour;
+	private ListenForPilotMessageBehaviour listenForPilotCallBehaviour;
 	private TurnLollipopToStopBehaviour turnLollipopToStopBehaviour;
+	private ListenForTyreChangerMessageBehaviour listenForTyreChangerMessageBehaviour;
+	private TurnLollipopToRunBehaviour turnLollipopToRunBehaviour;
 	
 	protected void setup() {
 		insertIntoYellowPages();
 		
-		listenForPilotCallBehaviour = new ListenForPilotCallBehaviour(this);
+		listenForPilotCallBehaviour = new ListenForPilotMessageBehaviour(this);
+		listenForTyreChangerMessageBehaviour = new ListenForTyreChangerMessageBehaviour(this);
 		
 		addBehaviour(listenForPilotCallBehaviour);
+		addBehaviour(listenForTyreChangerMessageBehaviour);
 	}
 	
 	private void insertIntoYellowPages() {
@@ -42,6 +46,19 @@ public class LollipopAgent extends Agent {
 	
 	public void setTurnLollipopToStopBehaviour(TurnLollipopToStopBehaviour turnLollipopToStopBehaviour) {
 		this.turnLollipopToStopBehaviour = turnLollipopToStopBehaviour;
+	}
+
+	public void removeListenForTyreChangerMessageBehaviour() {
+		removeBehaviour(listenForTyreChangerMessageBehaviour);
+		
+	}
+
+	public void setTurnLollipopToRunBehaviour(TurnLollipopToRunBehaviour turnLollipopToRunBehaviour) {
+		this.turnLollipopToRunBehaviour = turnLollipopToRunBehaviour;
+	}
+	
+	public void addTurnLollipopToRunBehaviour() {
+		addBehaviour(this.turnLollipopToRunBehaviour);
 	}
 	
 }

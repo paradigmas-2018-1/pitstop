@@ -5,7 +5,6 @@ import Utils.Utils;
 import jade.core.AID;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.domain.FIPAException;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.lang.acl.ACLMessage;
 
 

@@ -47,7 +47,7 @@ public class RunBehaviour extends CyclicBehaviour {
 	}
 	
 	private void run() {
-		System.out.println(" Vruum! Vruum!\n");
+		System.out.println(" Vruum! Vruum!");
 		this.carAgent.informCurrentTyreQuality();
 	}
 }

@@ -8,6 +8,7 @@ import jade.lang.acl.ACLMessage;
 
 public class PutTyreBehaviour extends OneShotBehaviour{
 
+	private static final long serialVersionUID = 1L;
 	private TyreCarrierAgent tyreCarrierAgent;
 	
 	public PutTyreBehaviour(TyreCarrierAgent tyreCarrierAgent) {
@@ -26,7 +27,7 @@ public class PutTyreBehaviour extends OneShotBehaviour{
 	}
 	
 	private void sendPutTyreBackMessageToChanger() {
-		AID tyreChangerAID = Utils.getTyreChangerAID();
+		AID tyreChangerAID = Utils.getTyreChangerAID(this.tyreCarrierAgent);
 		
 		if(tyreChangerAID != null) {
 			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);

@@ -11,6 +11,9 @@ public final class Utils {
 	
 	public static AID searchForAgent(Agent agent, String name,
 			String type) throws FIPAException {
+		
+
+		
 		DFAgentDescription dfAgentDescription = new DFAgentDescription();
 		ServiceDescription serviceDescription = new ServiceDescription();
 
@@ -21,7 +24,11 @@ public final class Utils {
 
 		DFAgentDescription[] result = DFService.search(agent, dfAgentDescription);
 		
+		AID agentsAID = result[0].getName();
 		
+		if(agentsAID == null) {
+			System.out.println("Null AID:" + name + " and " + type);
+		}
 
 		return result[0].getName();
 	}
@@ -41,12 +48,12 @@ public final class Utils {
 
 	}
 	
-	public static AID getTyreChangerAID() {
+	public static AID getTyreChangerAID(Agent agent) {
 		AID tyreChangerAID = null;
 		try {
 			tyreChangerAID = 
-					Utils.searchForAgent(
-							new Agent(),
+					searchForAgent(
+							agent,
 							Constants.TYRE_CHANGER_AGENT_NAME,
 							Constants.TYRE_CHANGER_AGENT_TYPE);
 		} catch (FIPAException e) {
@@ -57,13 +64,13 @@ public final class Utils {
 		return tyreChangerAID;
 	}
 	
-	public static AID getPilotAID() {
+	public static AID getPilotAID(Agent agent) {
 		AID pilotAID = null;
 		
 		try {
 			pilotAID = 
 					Utils.searchForAgent(
-							new Agent(),
+							agent,
 							Constants.CAR_AGENT_NAME,
 							Constants.CAR_AGENT_TYPE);
 			
@@ -75,13 +82,13 @@ public final class Utils {
 		return pilotAID;
 	}
 	
-	public static AID getLollipopAID() {
+	public static AID getLollipopAID(Agent agent) {
 		AID lollipopAID = null;
 		
 		try {
 			lollipopAID = 
 					Utils.searchForAgent(
-							new Agent(),
+							agent,
 							Constants.LOLLIPOP_AGENT_NAME,
 							Constants.LOLLIPOP_AGENT_TYPE);
 			

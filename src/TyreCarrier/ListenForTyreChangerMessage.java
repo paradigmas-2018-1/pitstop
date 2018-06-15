@@ -1,14 +1,12 @@
 package TyreCarrier;
 
-import jade.core.AID;
+import Utils.Constants;
 import jade.core.behaviours.CyclicBehaviour;
-import jade.domain.FIPAException;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.lang.acl.ACLMessage;
-import Utils.*;
 
 public class ListenForTyreChangerMessage extends CyclicBehaviour{
 
+	private static final long serialVersionUID = 1L;
 	private TyreCarrierAgent tyreCarrierAgent;
 	
 	public ListenForTyreChangerMessage(TyreCarrierAgent tyreCarrierAgent) {
@@ -18,11 +16,19 @@ public class ListenForTyreChangerMessage extends CyclicBehaviour{
 	@Override
 	public void action() {
 		String message = getTyreChangerMessage();
-		boolean isUnscrewed = checkIfMessageWasTyreUnscrewed(message);
 		
-		if(isUnscrewed) {
-			removeTyre();
+		if(message != null) {
+			boolean isUnscrewed = checkIfMessageWasTyreUnscrewed(message);
+			
+			if(isUnscrewed) {
+				removeTyre();
+				stopListeningToTyreChanger();			
+			}	
 		}
+	}
+	
+	private void stopListeningToTyreChanger() {
+		this.tyreCarrierAgent.removeListenForTyreChangerMessageBehaviour();
 	}
 	
 	private void removeTyre() {

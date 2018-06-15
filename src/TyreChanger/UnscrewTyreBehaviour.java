@@ -3,12 +3,12 @@ package TyreChanger;
 import jade.core.AID;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.domain.FIPAException;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.lang.acl.ACLMessage;
 import Utils.*;
 
 public class UnscrewTyreBehaviour extends OneShotBehaviour{
 
+	private static final long serialVersionUID = 1L;
 	TyreChangerAgent tyreChangerAgent;
 	
 	public UnscrewTyreBehaviour(TyreChangerAgent tyreChangerAgent) {

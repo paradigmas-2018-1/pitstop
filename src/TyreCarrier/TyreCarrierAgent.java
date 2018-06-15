@@ -6,11 +6,17 @@ import Utils.*;
 
 public class TyreCarrierAgent extends Agent {
 	
+	private static final long serialVersionUID = 1L;
 	private RemoveTyreBehaviour removeTyreBehaviour;
 	private PutTyreBehaviour putTyreBehaviour;
+	private ListenForTyreChangerMessage listenForTyreChangerMessage;
 	
 	protected void setup() {
 		insertAgentIntoYellowPages();
+		
+		listenForTyreChangerMessage = new ListenForTyreChangerMessage(this);
+		
+		addBehaviour(listenForTyreChangerMessage);
 	}
 	
 	private void insertAgentIntoYellowPages() {
@@ -21,6 +27,10 @@ public class TyreCarrierAgent extends Agent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void removeListenForTyreChangerMessageBehaviour() {
+		removeBehaviour(this.listenForTyreChangerMessage);
 	}
 
 	public void setRemoveTyreBehaviour(RemoveTyreBehaviour removeTyreBehaviour) {

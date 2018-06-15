@@ -6,6 +6,7 @@ import jade.lang.acl.ACLMessage;
 
 public class ListenForTyreCarrierMessage extends CyclicBehaviour {
 
+	private static final long serialVersionUID = 1L;
 	private TyreChangerAgent tyreChangerAgent;
 	
 	public ListenForTyreCarrierMessage(TyreChangerAgent tyreChangerAgent) {
@@ -20,10 +21,16 @@ public class ListenForTyreCarrierMessage extends CyclicBehaviour {
 			boolean isTyrePutBack = checkIfMessageIsTyrePutBack(message);
 			
 			if(isTyrePutBack) {
-				// TODO Screw tyre!
+				screwTyre();
 			}
 		}
 		
+	}
+	
+	private void screwTyre() {
+		ScrewTyreBehaviour screwTyreBehaviour = new ScrewTyreBehaviour(this.tyreChangerAgent);
+		this.tyreChangerAgent.setScrewTyreBehaviour(screwTyreBehaviour);
+		this.tyreChangerAgent.addScrewTyreBehaviour();
 	}
 	
 	private boolean checkIfMessageIsTyrePutBack(String message) {

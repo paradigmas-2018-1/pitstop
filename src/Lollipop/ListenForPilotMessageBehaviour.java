@@ -1,15 +1,17 @@
 package Lollipop;
 
 import Utils.Constants;
+import Utils.Utils;
+import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 
-public class ListenForPilotCallBehaviour extends CyclicBehaviour{
+public class ListenForPilotMessageBehaviour extends CyclicBehaviour{
 
 	private static final long serialVersionUID = 1L;
 	private LollipopAgent lollipopAgent;
 	
-	public ListenForPilotCallBehaviour(LollipopAgent lollipopAgent) {
+	public ListenForPilotMessageBehaviour(LollipopAgent lollipopAgent) {
 		this.lollipopAgent = lollipopAgent;
 	}
 	
@@ -23,6 +25,12 @@ public class ListenForPilotCallBehaviour extends CyclicBehaviour{
 			if(isComming) {
 				System.out.println(Constants.PILOT_COMMING_MESSAGE);
 				turnLollipopToStop();
+			} 
+			
+			boolean isStopped = checkIfPilotStopped(message);
+			
+			if(isStopped) {
+				sendMessageToAllCrew();
 				stopListeningToPilot();
 			}
 		}
@@ -47,6 +55,14 @@ public class ListenForPilotCallBehaviour extends CyclicBehaviour{
 		}
 	}
 	
+	private boolean checkIfPilotStopped(String message) {
+		if(message.equals(Constants.CAR_STOP_MESSAGE)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	private String getMessages() {
 		ACLMessage aclMessage = this.lollipopAgent.receive();
 		
@@ -57,6 +73,22 @@ public class ListenForPilotCallBehaviour extends CyclicBehaviour{
 		}
 		
 		return message;
+	}
+	
+	private void sendMessageToAllCrew() {
+		sendMessageToTyreChanger();
+	}
+	
+	private void sendMessageToTyreChanger() {
+		AID tyreChangerAID = Utils.getTyreChangerAID(this.lollipopAgent);
+		
+		if(tyreChangerAID != null) {
+			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			aclMessage.addReceiver(tyreChangerAID);
+			aclMessage.setContent(Constants.CHANGE_TYRE_MESSAGE);
+			this.lollipopAgent.send(aclMessage);
+		}
+		
 	}
 
 }

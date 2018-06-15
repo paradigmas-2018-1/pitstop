@@ -1,13 +1,12 @@
 package TyreChanger;
 
 import Utils.Constants;
-import Utils.Utils;
-import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 
 public class ListenForLollipopMessageBehaviour extends CyclicBehaviour {
 	
+	private static final long serialVersionUID = 1L;
 	private TyreChangerAgent tyreChangerAgent;
 	
 	public ListenForLollipopMessageBehaviour(TyreChangerAgent tyreChangerAgent) {
@@ -18,13 +17,14 @@ public class ListenForLollipopMessageBehaviour extends CyclicBehaviour {
 	public void action() {
 		String message = getLollipopMessage();
 		
-		boolean isChangeTyreMessage = checkIfIsChangeTyreMessage(message);
-		
-		if(isChangeTyreMessage) {
-			stopListeningForLollipopMessage();
-			startChangingTyres();
+		if(message != null) {
+			boolean isChangeTyreMessage = checkIfIsChangeTyreMessage(message);
+			
+			if(isChangeTyreMessage) {
+				stopListeningForLollipopMessage();
+				startChangingTyres();
+			}	
 		}
-		
 	}
 	
 	private void stopListeningForLollipopMessage() {
