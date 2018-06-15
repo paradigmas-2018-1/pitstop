@@ -17,4 +17,6 @@ public final class Constants {
 	public final static String TYRE_UNSCREWED_MESSAGE = "DESPARAFUZEI!";
 	public final static String TYRE_REMOVED_MESSAGE = "TIREI!";
 	public final static String TYRE_PUT_BACK_MESSAGE = "COLOQUEI!";
+	public final static String TYRE_SCREWED_MESSAGE = "PARAFUZEI!";
+	public final static String TYRE_CHANGED_MESSAGE = "TROQUEI VAI VAI VAI";
 }

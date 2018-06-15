@@ -7,11 +7,11 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.lang.acl.ACLMessage;
 import Utils.*;
 
-public class ChangeTyreBehaviour extends OneShotBehaviour{
+public class UnscrewTyreBehaviour extends OneShotBehaviour{
 
 	TyreChangerAgent tyreChangerAgent;
 	
-	public ChangeTyreBehaviour(TyreChangerAgent tyreChangerAgent) {
+	public UnscrewTyreBehaviour(TyreChangerAgent tyreChangerAgent) {
 		this.tyreChangerAgent = tyreChangerAgent;
 	}
 	

@@ -30,7 +30,7 @@ public class TyreChangerAgent extends Agent{
 		removeBehaviour(listenForLollipopMessageBehaviour);
 	}
 
-	public void addChangeTyreBehaviour(ChangeTyreBehaviour changeTyreBehaviour) {
+	public void addChangeTyreBehaviour(UnscrewTyreBehaviour changeTyreBehaviour) {
 		addBehaviour(changeTyreBehaviour);
 	}
 }

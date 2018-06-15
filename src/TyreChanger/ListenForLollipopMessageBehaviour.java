@@ -32,7 +32,7 @@ public class ListenForLollipopMessageBehaviour extends CyclicBehaviour {
 	}
 	
 	private void startChangingTyres() {
-		ChangeTyreBehaviour changeTyreBehaviour = new ChangeTyreBehaviour(this.tyreChangerAgent);
+		UnscrewTyreBehaviour changeTyreBehaviour = new UnscrewTyreBehaviour(this.tyreChangerAgent);
 		this.tyreChangerAgent.addChangeTyreBehaviour(changeTyreBehaviour);
 	}
 	
