@@ -6,6 +6,7 @@ import jade.core.behaviours.CyclicBehaviour;
 
 public class WearTyreBehaviour extends CyclicBehaviour {
 	
+	private static final long serialVersionUID = 1L;
 	CarAgent carAgent;
 	
 	public WearTyreBehaviour(CarAgent carAgent) {

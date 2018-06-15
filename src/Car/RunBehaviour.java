@@ -4,6 +4,7 @@ import jade.core.behaviours.CyclicBehaviour;
 
 public class RunBehaviour extends CyclicBehaviour {
 	
+	private static final long serialVersionUID = 1L;
 	CarAgent carAgent;
 	private final int TYRE_QUALITY_LIMIT = 30;
 	
@@ -20,8 +21,14 @@ public class RunBehaviour extends CyclicBehaviour {
 		
 		if (tyreQuality <= TYRE_QUALITY_LIMIT) {
 			stop();
-			// TODO Go to pitstop.
+			goToPitstop();
 		}
+	}
+	
+	private void goToPitstop() {
+		GoToPitstopBehaviour goToPitstopBehaviour = new GoToPitstopBehaviour(this.carAgent);
+		this.carAgent.setGoToPitstopBehaviour(goToPitstopBehaviour);
+		this.carAgent.addGoToPitstopBehaviour();
 	}
 	
 	private void startWearingTyres() {
