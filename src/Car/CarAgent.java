@@ -1,10 +1,9 @@
 package Car;
 
+import Utils.Constants;
+import Utils.Utils;
 import jade.core.Agent;
-import jade.domain.DFService;
 import jade.domain.FIPAException;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
 
 public class CarAgent extends Agent {
 	
@@ -14,11 +13,9 @@ public class CarAgent extends Agent {
 	private RunBehaviour runBehaviour;
 	private WearTyreBehaviour wearTyreBehaviour;
 	private GoToPitstopBehaviour goToPitstopBehaviour;
-	private final String NAME = "Car";
-	private final String TYPE = "car";
 	
 	protected void setup() {
-		setTyreQuality(100);
+		this.tyreQuality = 100;
 		
 		runBehaviour = new RunBehaviour(this);
 		
@@ -28,15 +25,9 @@ public class CarAgent extends Agent {
 	}
 	
 	private void insertIntoYellowPages() {
-		DFAgentDescription dfAgentDescription = new DFAgentDescription();
-		dfAgentDescription.setName(getAID());
-		ServiceDescription serviceDescription = new ServiceDescription();
-		serviceDescription.setName(NAME);
-		serviceDescription.setType(TYPE);
-		dfAgentDescription.addServices(serviceDescription);
-		
 		try {
-			DFService.register(this, dfAgentDescription);
+			Utils.insertAgentIntoYellowPages(this, getAID(), Constants.CAR_AGENT_NAME,
+					Constants.CAR_AGENT_TYPE);
 		} catch (FIPAException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,31 +1,38 @@
 package Lollipop;
 
+import Utils.Constants;
+import Utils.Utils;
 import jade.core.Agent;
-import jade.domain.DFService;
 import jade.domain.FIPAException;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
 
 public class LollipopAgent extends Agent {
-	private final String NAME = "Lollipop";
-	private final String TYPE = "Pitstop Crew";
+	private static final long serialVersionUID = 1L;
+	private ListenForPilotCallBehaviour listenForPilotCallBehaviour;
 	
 	protected void setup() {
 		insertIntoYellowPages();
+		
+		listenForPilotCallBehaviour = new ListenForPilotCallBehaviour(this);
+		
+		addBehaviour(listenForPilotCallBehaviour);
 	}
 	
 	private void insertIntoYellowPages() {
-		DFAgentDescription dfAgentDescription = new DFAgentDescription();
-		ServiceDescription serviceDescription = new ServiceDescription();
-		serviceDescription.setName(NAME);
-		serviceDescription.setType(TYPE);
-		dfAgentDescription.addServices(serviceDescription);
-		
 		try {
-			DFService.register(this, dfAgentDescription);
+			Utils.insertAgentIntoYellowPages(this, getAID(), Constants.LOLLIPOP_AGENT_NAME,
+					Constants.LOLLIPOP_AGENT_TYPE);
 		} catch (FIPAException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	public void removeListenForPilotCallBehaviour() {
+		removeBehaviour(listenForPilotCallBehaviour);
+	}
+	
+	public void addListenForPilotCallBehaviour() {
+		addBehaviour(listenForPilotCallBehaviour);
+	}
 }
+ 

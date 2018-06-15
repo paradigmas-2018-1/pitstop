@@ -6,7 +6,7 @@ public class RunBehaviour extends CyclicBehaviour {
 	
 	private static final long serialVersionUID = 1L;
 	CarAgent carAgent;
-	private final int TYRE_QUALITY_LIMIT = 30;
+	private final int TYRE_QUALITY_LIMIT = 90;
 	
 	public RunBehaviour(CarAgent carAgent) {
 		this.carAgent = carAgent;

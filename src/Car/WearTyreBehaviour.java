@@ -25,7 +25,7 @@ public class WearTyreBehaviour extends CyclicBehaviour {
 	}
 	
 	private void sleepThreeSeconds() throws InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(500);
 	}
 	
 	private int generateRandomWearAmount() {
