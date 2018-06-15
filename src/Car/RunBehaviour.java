@@ -20,9 +20,18 @@ public class RunBehaviour extends CyclicBehaviour {
 		int tyreQuality = this.carAgent.getTyreQuality();
 		
 		if (tyreQuality <= TYRE_QUALITY_LIMIT) {
-			stop();
 			goToPitstop();
+			startSearchingForStopLollipop();
 		}
+		
+		
+	}
+	
+	private void startSearchingForStopLollipop() {
+		SearchForLollipopBehaviour searchForStopLollipopBehaviour =
+				new SearchForLollipopBehaviour(this.carAgent);
+		this.carAgent.setSearchForLollipopBehaviour(searchForStopLollipopBehaviour);
+		this.carAgent.addSearchForLollipopBehaviour();
 	}
 	
 	private void goToPitstop() {
@@ -41,11 +50,4 @@ public class RunBehaviour extends CyclicBehaviour {
 		System.out.println(" Vruum! Vruum!\n");
 		this.carAgent.informCurrentTyreQuality();
 	}
-	
-	private void stop() {
-		System.out.println("Parado!\n");
-		this.carAgent.removeRunBehaviour();
-		this.carAgent.removeWearTyreBehaviour();
-	}
-
 }

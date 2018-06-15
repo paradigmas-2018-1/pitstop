@@ -22,8 +22,21 @@ public class ListenForPilotCallBehaviour extends CyclicBehaviour{
 			
 			if(isComming) {
 				System.out.println(Constants.PILOT_COMMING_MESSAGE);
+				turnLollipopToStop();
+				stopListeningToPilot();
 			}
 		}
+	}
+	
+	private void stopListeningToPilot() {
+		this.lollipopAgent.removeListenForPilotCallBehaviour();
+	}
+	
+	private void turnLollipopToStop() {
+		TurnLollipopToStopBehaviour turnLollipopToStopBehaviour =
+				new TurnLollipopToStopBehaviour(lollipopAgent);
+		this.lollipopAgent.setTurnLollipopToStopBehaviour(turnLollipopToStopBehaviour);
+		this.lollipopAgent.addTurnLollipopToStopBehaviour();
 	}
 	
 	private boolean checkIfPilotIsComming(String message) {

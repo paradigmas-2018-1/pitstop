@@ -13,6 +13,7 @@ public class CarAgent extends Agent {
 	private RunBehaviour runBehaviour;
 	private WearTyreBehaviour wearTyreBehaviour;
 	private GoToPitstopBehaviour goToPitstopBehaviour;
+	private SearchForLollipopBehaviour searchForLollipopBehaviour;
 	
 	protected void setup() {
 		this.tyreQuality = 100;
@@ -80,6 +81,20 @@ public class CarAgent extends Agent {
 	
 	public void setGoToPitstopBehaviour(GoToPitstopBehaviour goToPitstopBehaviour) {
 		this.goToPitstopBehaviour = goToPitstopBehaviour;
+	}
+
+	public void setSearchForLollipopBehaviour(
+			SearchForLollipopBehaviour searchForStopLollipopBehaviour) {
+		this.searchForLollipopBehaviour = searchForStopLollipopBehaviour;
+		
+	}
+
+	public void addSearchForLollipopBehaviour() {
+		addBehaviour(this.searchForLollipopBehaviour);
+	}
+	
+	public void startRunBehaviour() {
+		this.runBehaviour.action();
 	}
 
 }

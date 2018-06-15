@@ -8,6 +8,7 @@ import jade.domain.FIPAException;
 public class LollipopAgent extends Agent {
 	private static final long serialVersionUID = 1L;
 	private ListenForPilotCallBehaviour listenForPilotCallBehaviour;
+	private TurnLollipopToStopBehaviour turnLollipopToStopBehaviour;
 	
 	protected void setup() {
 		insertIntoYellowPages();
@@ -34,5 +35,14 @@ public class LollipopAgent extends Agent {
 	public void addListenForPilotCallBehaviour() {
 		addBehaviour(listenForPilotCallBehaviour);
 	}
+	
+	public void addTurnLollipopToStopBehaviour() {
+		this.addBehaviour(this.turnLollipopToStopBehaviour);
+	}
+	
+	public void setTurnLollipopToStopBehaviour(TurnLollipopToStopBehaviour turnLollipopToStopBehaviour) {
+		this.turnLollipopToStopBehaviour = turnLollipopToStopBehaviour;
+	}
+	
 }
  

@@ -10,7 +10,6 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 public final class Utils {
 	public static DFAgentDescription[] searchForAgent(Agent agent, String name,
 			String type) throws FIPAException {
-		System.out.println(name);
 		DFAgentDescription dfAgentDescription = new DFAgentDescription();
 		ServiceDescription serviceDescription = new ServiceDescription();
 

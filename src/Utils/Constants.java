@@ -7,4 +7,6 @@ public final class Constants {
 	public final static String LOLLIPOP_AGENT_NAME = "Lollipop";
 	public final static String LOLLIPOP_AGENT_TYPE = "Pitstop";
 	public final static String PILOT_COMMING_MESSAGE = "Ô bicho vino mulque!";
+	public final static String TURNING_LOLLIPOP_TO_STOP_MESSAGE = "PARÔ";
+	public final static String TURNING_LOLLIPOP_TO_RUN_MESSAGE = "VAI VAI VAI!";
 }
