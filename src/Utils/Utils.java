@@ -29,6 +29,7 @@ public final class Utils {
 		if(agentsAID == null) {
 			System.out.println("Null AID:" + name + " and " + type);
 		}
+		
 
 		return result[0].getName();
 	}

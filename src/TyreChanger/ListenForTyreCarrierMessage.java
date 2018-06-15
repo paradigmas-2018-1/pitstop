@@ -22,9 +22,14 @@ public class ListenForTyreCarrierMessage extends CyclicBehaviour {
 			
 			if(isTyrePutBack) {
 				screwTyre();
+				stopListeningForTyreCarrierBehaviour();
 			}
 		}
 		
+	}
+	
+	private void stopListeningForTyreCarrierBehaviour() {
+		this.tyreChangerAgent.removeListenForTyreCarrierMessageBehaviour();
 	}
 	
 	private void screwTyre() {

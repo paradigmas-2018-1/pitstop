@@ -19,7 +19,7 @@ public class TurnLollipopToRunBehaviour extends OneShotBehaviour{
 	public void action() {
 		turnLollipopToRun();
 		sendRunMessageToPilot();
-		
+		startListeningToPilot();
 	}
 	
 	private void turnLollipopToRun() {
@@ -37,6 +37,10 @@ public class TurnLollipopToRunBehaviour extends OneShotBehaviour{
 			aclMessage.setContent(Constants.TURNING_LOLLIPOP_TO_RUN_MESSAGE);
 			lollipopAgent.send(aclMessage);
 		}
+	}
+	
+	private void startListeningToPilot() {
+		this.lollipopAgent.addListenForPilotCallBehaviour();
 	}
 
 }

@@ -44,6 +44,12 @@ public class LollipopAgent extends Agent {
 		this.addBehaviour(this.turnLollipopToStopBehaviour);
 	}
 	
+	public void remoteTurnLollipopToStopBehaviour() {
+		if(this.turnLollipopToRunBehaviour != null) {
+			this.removeBehaviour(this.turnLollipopToStopBehaviour);			
+		}
+	}
+	
 	public void setTurnLollipopToStopBehaviour(TurnLollipopToStopBehaviour turnLollipopToStopBehaviour) {
 		this.turnLollipopToStopBehaviour = turnLollipopToStopBehaviour;
 	}

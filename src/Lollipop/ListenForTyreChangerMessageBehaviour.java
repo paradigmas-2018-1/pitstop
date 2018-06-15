@@ -18,6 +18,7 @@ public class ListenForTyreChangerMessageBehaviour extends CyclicBehaviour{
 		String message = getTyreChangerMessage();
 		
 		if(message != null) {
+			System.out.println("Mensagem para TyreChanger recebida");
 			boolean isMessageTyreChanged = checkIfMessageIsTyreChanged(message);
 			
 			if(isMessageTyreChanged) {
@@ -36,7 +37,7 @@ public class ListenForTyreChangerMessageBehaviour extends CyclicBehaviour{
 	}
 	
 	private boolean checkIfMessageIsTyreChanged(String message) {
-		if(message.equals(Constants.TYRE_CHANGED_MESSAGE)){
+		if(message.equals(Constants.TYRE_SCREWED_MESSAGE)){
 			return true;
 		} else {
 			return false;

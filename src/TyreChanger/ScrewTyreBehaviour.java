@@ -1,10 +1,13 @@
 package TyreChanger;
 
+import Car.CarAgent;
 import Utils.Constants;
 import Utils.Utils;
 import jade.core.AID;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
+import jade.wrapper.AgentContainer;
+import jade.wrapper.ControllerException;
 
 public class ScrewTyreBehaviour extends OneShotBehaviour{
 
@@ -23,6 +26,12 @@ public class ScrewTyreBehaviour extends OneShotBehaviour{
 	
 	private void screwTyre() {
 		System.out.println(Constants.TYRE_SCREWED_MESSAGE);
+		updateTyres();
+		
+	}
+	
+	private void updateTyres() {
+		
 	}
 	
 	private void sendTyreScrewedMessageToLollipop() {

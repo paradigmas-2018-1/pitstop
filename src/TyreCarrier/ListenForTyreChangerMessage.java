@@ -46,7 +46,7 @@ public class ListenForTyreChangerMessage extends CyclicBehaviour{
 	}
 	
 	private String getTyreChangerMessage() {
-		ACLMessage aclMessage = this.tyreCarrierAgent.receive();
+		ACLMessage aclMessage = this.tyreCarrierAgent.blockingReceive();
 		
 		String message = null;
 		

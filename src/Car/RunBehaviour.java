@@ -6,7 +6,7 @@ public class RunBehaviour extends CyclicBehaviour {
 	
 	private static final long serialVersionUID = 1L;
 	CarAgent carAgent;
-	private final int TYRE_QUALITY_LIMIT = 90;
+	private final int TYRE_QUALITY_LIMIT = 50;
 	
 	public RunBehaviour(CarAgent carAgent) {
 		this.carAgent = carAgent;
@@ -20,14 +20,17 @@ public class RunBehaviour extends CyclicBehaviour {
 		int tyreQuality = this.carAgent.getTyreQuality();
 		
 		if (tyreQuality <= TYRE_QUALITY_LIMIT) {
+			stopRunningBehaviour();
 			goToPitstop();
 			startSearchingForStopLollipop();
-		}
-		
-		
+		}	
 	}
 	
-	private void startSearchingForStopLollipop() {
+	private void stopRunningBehaviour() {
+		this.carAgent.removeRunBehaviour();
+	}
+	
+	private void startSearchingForStopLollipop() { 
 		SearchForLollipopBehaviour searchForStopLollipopBehaviour =
 				new SearchForLollipopBehaviour(this.carAgent);
 		this.carAgent.setSearchForLollipopBehaviour(searchForStopLollipopBehaviour);
@@ -35,6 +38,7 @@ public class RunBehaviour extends CyclicBehaviour {
 	}
 	
 	private void goToPitstop() {
+		System.out.println("goToPitstop");
 		GoToPitstopBehaviour goToPitstopBehaviour = new GoToPitstopBehaviour(this.carAgent);
 		this.carAgent.setGoToPitstopBehaviour(goToPitstopBehaviour);
 		this.carAgent.addGoToPitstopBehaviour();

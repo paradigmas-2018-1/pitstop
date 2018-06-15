@@ -21,6 +21,9 @@ public class CarAgent extends Agent {
 		runBehaviour = new RunBehaviour(this);
 		
 		insertIntoYellowPages();
+	
+		System.out.println(this.getName());
+		System.out.println(this.getLocalName());
 		
 		addBehaviour(runBehaviour);
 	}
@@ -94,7 +97,11 @@ public class CarAgent extends Agent {
 	}
 	
 	public void startRunBehaviour() {
-		this.runBehaviour.action();
+		addBehaviour(this.runBehaviour);
+	}
+	
+	public SearchForLollipopBehaviour getSearchForLollipopBehaviour() {
+		return this.searchForLollipopBehaviour;
 	}
 
 }

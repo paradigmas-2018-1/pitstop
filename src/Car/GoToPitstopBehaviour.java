@@ -34,36 +34,22 @@ public class GoToPitstopBehaviour extends OneShotBehaviour{
 		 *  does not already believe that the receiver has any 
 		 *  knowledge of the truth of the proposition.
 		 */
-		ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
-		aclMessage.setSender(this.carAgent.getAID());
-		aclMessage.setContent(Constants.GOING_TO_PITSTOP_MESSAGE);
 		
-		AID lollipopAgentAID = getLollipopAgentAID();
+		
+		AID lollipopAgentAID = Utils.getLollipopAID(this.carAgent);
 		
 		if(lollipopAgentAID != null) {
+			System.out.println("Enviando mensagem INDO AO PITSTOP " + lollipopAgentAID);
+			
+			ACLMessage aclMessage = new ACLMessage(ACLMessage.INFORM);
+			
 			aclMessage.addReceiver(lollipopAgentAID);
+			aclMessage.setContent(Constants.GOING_TO_PITSTOP_MESSAGE);
+			this.carAgent.send(aclMessage);
 		}
-		
-		this.carAgent.send(aclMessage);
 		
 	}
 	
-	private AID getLollipopAgentAID() {
-		AID lollipopAgentAID = null;
-		
-		try {
-			lollipopAgentAID =
-					Utils.searchForAgent(this.carAgent, Constants.LOLLIPOP_AGENT_NAME,
-							Constants.LOLLIPOP_AGENT_TYPE);
-			
-		} catch (FIPAException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return lollipopAgentAID;
-		
-	}
 	
 
 }

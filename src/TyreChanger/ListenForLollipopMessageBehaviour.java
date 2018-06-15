@@ -15,14 +15,21 @@ public class ListenForLollipopMessageBehaviour extends CyclicBehaviour {
 	
 	@Override
 	public void action() {
+//		try {
+//			Thread.sleep(800);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("Escutando mensagens Lollipop TyreChanger");
 		String message = getLollipopMessage();
 		
 		if(message != null) {
 			boolean isChangeTyreMessage = checkIfIsChangeTyreMessage(message);
 			
 			if(isChangeTyreMessage) {
-				stopListeningForLollipopMessage();
 				startChangingTyres();
+				stopListeningForLollipopMessage();
 			}	
 		}
 	}
@@ -46,7 +53,7 @@ public class ListenForLollipopMessageBehaviour extends CyclicBehaviour {
 	}
 
 	private String getLollipopMessage() {
-		ACLMessage aclMessage = this.tyreChangerAgent.receive();
+		ACLMessage aclMessage = this.tyreChangerAgent.blockingReceive();
 		
 		String message = null;
 		
