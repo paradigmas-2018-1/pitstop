@@ -14,14 +14,23 @@ public class WearTyreBehaviour extends CyclicBehaviour {
 
 	@Override
 	public void action() {
+		try {
+			sleepThreeSeconds();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		int amountToWear = generateRandomWearAmount();
 		removeFromTyreQuality(amountToWear);
+	}
+	
+	private void sleepThreeSeconds() throws InterruptedException {
+		Thread.sleep(3000);
 	}
 	
 	private int generateRandomWearAmount() {
 		Random random = new Random();
 		
-		int amountToWear = random.nextInt(5);
+		int amountToWear = random.nextInt(5) + 1;
 		
 		return amountToWear;
 	}
