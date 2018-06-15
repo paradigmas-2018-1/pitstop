@@ -53,13 +53,9 @@ public class GoToPitstopBehaviour extends OneShotBehaviour{
 		AID lollipopAgentAID = null;
 		
 		try {
-			DFAgentDescription[] result =
+			lollipopAgentAID =
 					Utils.searchForAgent(this.carAgent, Constants.LOLLIPOP_AGENT_NAME,
 							Constants.LOLLIPOP_AGENT_TYPE);
-			
-			
-			lollipopAgentAID = result[0].getName();
-			
 			
 		} catch (FIPAException e) {
 			// TODO Auto-generated catch block

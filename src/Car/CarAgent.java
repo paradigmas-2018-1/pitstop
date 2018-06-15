@@ -4,6 +4,7 @@ import Utils.Constants;
 import Utils.Utils;
 import jade.core.Agent;
 import jade.domain.FIPAException;
+import jade.domain.FIPAAgentManagement.ServiceDescription;
 
 public class CarAgent extends Agent {
 	
